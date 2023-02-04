@@ -69,11 +69,6 @@
         "Currency",
         "Description",
         "Running Balance",
-        "Exchange From",
-        "Exchange To",
-        "Exchange Rate",
-        "Merchant",
-        "Card Last Four Digits",
         "Total fees"
     ]
 }

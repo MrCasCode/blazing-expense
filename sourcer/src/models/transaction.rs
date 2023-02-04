@@ -13,7 +13,7 @@
 
 use serde::{Serialize, Deserialize};
 
-#[derive(Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Transaction {
     #[serde(rename = "Amount")]
     amount: f64,
@@ -25,7 +25,7 @@ pub struct Transaction {
     card_holder_full_name: Option<String>,
 
     #[serde(rename = "Card Last Four Digits")]
-    card_last_four_digits: String,
+    card_last_four_digits: Option<String>,
 
     #[serde(rename = "Currency")]
     currency: String,
@@ -37,16 +37,16 @@ pub struct Transaction {
     description: String,
 
     #[serde(rename = "Exchange From")]
-    exchange_from: String,
+    exchange_from: Option<String>,
 
     #[serde(rename = "Exchange Rate")]
-    exchange_rate: f64,
+    exchange_rate: Option<f64>,
 
     #[serde(rename = "Exchange To")]
-    exchange_to: String,
+    exchange_to: Option<String>,
 
     #[serde(rename = "Merchant")]
-    merchant: String,
+    merchant: Option<String>,
 
     #[serde(rename = "Note")]
     note: Option<String>,

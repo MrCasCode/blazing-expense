@@ -66,6 +66,7 @@ fn main() {
             .arg("schemas/".to_string() + schema.as_str())
             .arg("-o")
             .arg(&schema_output)
+            .arg("--derive-debug")
             .output();
 
         match output {
