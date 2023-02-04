@@ -1,0 +1,18 @@
+[package]
+name = "blazing-expense"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+redis = { version = "0.22.3", features = ["json"] }
+csv = "1.1"
+anyhow = "1.0.68"
+config = "0.13.1"
+serde_derive = "1.0.152"
+serde = "1.0.152"
+
+[build-dependencies]
+serde = "1.0.152"
+serde_derive = "1.0.152"
+config = "0.13.1"

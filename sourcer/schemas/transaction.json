@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "TransferWise CSV to JSON Schema",
+    "type": "object",
+    "properties": {
+        "TransferWise ID": {
+            "type": "string",
+            "description": "This is the id"
+        },
+        "Date": {
+            "type": "string"
+        },
+        "Amount": {
+            "type": "number"
+        },
+        "Currency": {
+            "type": "string"
+        },
+        "Description": {
+            "type": "string"
+        },
+        "Payment Reference": {
+            "type": "string"
+        },
+        "Running Balance": {
+            "type": "number"
+        },
+        "Exchange From": {
+            "type": "string"
+        },
+        "Exchange To": {
+            "type": "string"
+        },
+        "Exchange Rate": {
+            "type": "number"
+        },
+        "Payer Name": {
+            "type": "string"
+        },
+        "Payee Name": {
+            "type": "string"
+        },
+        "Payee Account Number": {
+            "type": "string"
+        },
+        "Merchant": {
+            "type": "string"
+        },
+        "Card Last Four Digits": {
+            "type": "string"
+        },
+        "Card Holder Full Name": {
+            "type": "string"
+        },
+        "Attachment": {
+            "type": "string"
+        },
+        "Note": {
+            "type": "string"
+        },
+        "Total fees": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "TransferWise ID",
+        "Date",
+        "Amount",
+        "Currency",
+        "Description",
+        "Running Balance",
+        "Exchange From",
+        "Exchange To",
+        "Exchange Rate",
+        "Merchant",
+        "Card Last Four Digits",
+        "Total fees"
+    ]
+}
