@@ -16,60 +16,63 @@ use serde::{Serialize, Deserialize};
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Transaction {
     #[serde(rename = "Amount")]
-    amount: f64,
+    pub amount: f64,
 
     #[serde(rename = "Attachment")]
-    attachment: Option<String>,
+    pub attachment: Option<String>,
 
     #[serde(rename = "Card Holder Full Name")]
-    card_holder_full_name: Option<String>,
+    pub card_holder_full_name: Option<String>,
 
     #[serde(rename = "Card Last Four Digits")]
-    card_last_four_digits: Option<String>,
+    pub card_last_four_digits: Option<String>,
 
     #[serde(rename = "Currency")]
-    currency: String,
+    pub currency: String,
 
     #[serde(rename = "Date")]
-    date: String,
+    pub date: String,
 
     #[serde(rename = "Description")]
-    description: String,
+    pub description: String,
 
     #[serde(rename = "Exchange From")]
-    exchange_from: Option<String>,
+    pub exchange_from: Option<String>,
 
     #[serde(rename = "Exchange Rate")]
-    exchange_rate: Option<f64>,
+    pub exchange_rate: Option<f64>,
 
     #[serde(rename = "Exchange To")]
-    exchange_to: Option<String>,
+    pub exchange_to: Option<String>,
 
     #[serde(rename = "Merchant")]
-    merchant: Option<String>,
+    pub merchant: Option<String>,
 
     #[serde(rename = "Note")]
-    note: Option<String>,
+    pub note: Option<String>,
 
     #[serde(rename = "Payee Account Number")]
-    payee_account_number: Option<String>,
+    pub payee_account_number: Option<String>,
 
     #[serde(rename = "Payee Name")]
-    payee_name: Option<String>,
+    pub payee_name: Option<String>,
 
     #[serde(rename = "Payer Name")]
-    payer_name: Option<String>,
+    pub payer_name: Option<String>,
 
     #[serde(rename = "Payment Reference")]
-    payment_reference: Option<String>,
+    pub payment_reference: Option<String>,
 
     #[serde(rename = "Running Balance")]
-    running_balance: f64,
+    pub running_balance: f64,
 
     #[serde(rename = "Total fees")]
-    total_fees: f64,
+    pub total_fees: f64,
 
     /// This is the id
     #[serde(rename = "TransferWise ID")]
-    transfer_wise_id: String,
+    pub transfer_wise_id: String,
+
+    #[serde(rename = "Version Timestamp")]
+    pub version_timestamp: Option<String>,
 }

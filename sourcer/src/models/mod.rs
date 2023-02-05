@@ -1,1 +1,4 @@
-pub mod transaction;
+mod transaction;
+
+pub use transaction::Transaction;
+

@@ -1,22 +1,28 @@
-use blazing_expense::transaction_source::transaction_source::{CsvSource};
+use blazing_expense::transaction_output::transaction_output::{
+    RedisPublisher, TransactionPublisher,
+};
+use blazing_expense::transaction_source::transaction_source::CsvSource;
 use blazing_expense::transaction_source::transaction_source::TransactionSource;
 use settings::Settings;
 
 mod models;
-mod transaction_source;
 mod settings;
+mod transaction_source;
 
-fn main() {
-    match Settings::new() {
-        Ok(settings) => {
-            let tx_source = CsvSource::new(settings.transaction_source.dir);
-            let transactions = tx_source.source();
-            ()
-        }
-        Err(err) => {
-            eprintln!("Could not load settings: {:?}", err)
+use anyhow::Result;
 
+fn main() -> Result<()> {
+    let settings = Settings::new()?;
+    let mut publisher = RedisPublisher::new(&settings.redis.address)?;
+
+    let tx_source = CsvSource::new(settings.transaction_source.dir);
+
+    if let Ok(transactions) = tx_source.source() {
+        for transaction in transactions {
+            println!("Sending transaction {}", transaction.transfer_wise_id);
+            publisher.publish_transaction(transaction)?;
         }
     }
 
+    Ok(())
 }

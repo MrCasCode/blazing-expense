@@ -67,6 +67,8 @@ fn main() {
             .arg("-o")
             .arg(&schema_output)
             .arg("--derive-debug")
+            .arg("--visibility")
+            .arg("public")
             .output();
 
         match output {

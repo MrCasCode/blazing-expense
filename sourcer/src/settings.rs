@@ -1,15 +1,20 @@
 use config::{Config, ConfigError, Environment, File};
 use serde_derive::Deserialize;
-use std::{env, fs};
-
+use std::env;
 
 #[derive(Debug, Deserialize)]
 pub struct TransactionSourceSettings {
-    pub dir: String
+    pub dir: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct RedisSettings {
+    pub address: String,
 }
 #[derive(Debug, Deserialize)]
 pub struct Settings {
-    pub transaction_source: TransactionSourceSettings
+    pub transaction_source: TransactionSourceSettings,
+    pub redis: RedisSettings,
 }
 
 impl Settings {

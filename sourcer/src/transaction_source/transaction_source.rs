@@ -1,6 +1,9 @@
-use std::fs::{self, ReadDir};
+use std::{
+    fs::{self, ReadDir},
+    time::{Duration, UNIX_EPOCH},
+};
 
-use crate::models::transaction::Transaction;
+use crate::models::Transaction;
 use anyhow::Result;
 
 // Trait declaring what a transaction source needs to implement
@@ -34,12 +37,18 @@ impl TransactionSource for CsvSource {
 
         for csv in csvs {
             println!("Reading {}", &csv);
-            let mut reader = csv::Reader::from_path(csv)?;
+
+            let mut reader = csv::Reader::from_path(&csv)?;
+            let timestamp = get_version_timestamp(&csv);
 
             for entry in reader.deserialize() {
                 match entry {
                     Ok(tx) => {
-                        let transaction: Transaction = tx;
+                        let mut transaction: Transaction = tx;
+                        transaction.version_timestamp = timestamp
+                            .as_ref()
+                            .ok()
+                            .map_or(None, |duration| Some(duration.as_secs().to_string()));
                         transactions.push(transaction);
                     }
                     Err(err) => eprintln!("Could not deserialize transaction: {:?}", err),
@@ -59,4 +68,12 @@ fn get_csvs(directory: ReadDir) -> Vec<String> {
         .collect(); // collect the iterator into a collection, in this case a vector
 
     filenames
+}
+
+fn get_version_timestamp(file_name: &String) -> Result<Duration> {
+    let metadata = fs::metadata(&file_name)?;
+    let creation_time = metadata.created()?;
+
+    let timestamp = creation_time.duration_since(UNIX_EPOCH)?;
+    Ok(timestamp)
 }
