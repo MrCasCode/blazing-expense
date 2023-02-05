@@ -1,8 +1,8 @@
-use blazing_expense::transaction_output::transaction_output::{
+use blazing_sourcer::transaction_output::transaction_output::{
     RedisPublisher, TransactionPublisher,
 };
-use blazing_expense::transaction_source::transaction_source::CsvSource;
-use blazing_expense::transaction_source::transaction_source::TransactionSource;
+use blazing_sourcer::transaction_source::transaction_source::CsvSource;
+use blazing_sourcer::transaction_source::transaction_source::TransactionSource;
 use settings::Settings;
 
 mod models;
